@@ -3,45 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Dio Pratama — Portfolio</title>
   <meta name="description" content="Dio Pratama — Informatics student focusing on Mobile & Frontend (Flutter & Dart).">
 
-  <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Preload CSS for faster render -->
   <link rel="preload" as="style" href="styles.css">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 
-  <!-- Icons -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/profile.svg" sizes="any">
-  <link rel="mask-icon" href="assets/img/profile.svg" color="#004DCC"> 
-  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml" href="assets/img/profile.svg">
+  <link rel="mask-icon" href="assets/img/profile.svg" color="#004DCC">
+  <meta name="theme-color" content="#004DCC">
 
-  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Dio Pratama — Portfolio" />
   <meta property="og:description" content="Personal portfolio and projects of Dio Pratama." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
-  <!-- Skip link for accessibility -->
+
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="Home">
-        <img class="brand-logo" src="assets/img/profile.svg" alt="Dio Pratama logo" width="36" height="36">
-        <span class="brand-text">Dio Pratama</span>
-      </a>
 
-      <button id="burger" class="burger" aria-label="Open menu" aria-expanded="false">
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="Home">
+  <img class="brand-logo" src="assets/img/profile.svg" alt="Dio Pratama" width="32" height="32">
+  <span class="brand-text">Dio Pratama</span>
+</a>
+
+      <button id="burger" class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
 
-      <nav id="menu" class="nav-links">
+      <nav id="menu" class="nav-links" aria-label="Utama">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
@@ -52,23 +50,22 @@
   </header>
 
   <main id="main">
-    <section class="hero">
+
+    <section class="hero" id="top">
       <div class="container hero-inner">
         <div class="hero-text">
-          <p class="eyebrow reveal">Computer Science Student</p>
+          <p class="eyebrow reveal">COMPUTER SCIENCE STUDENT</p>
           <h1 class="reveal">Dio Pratama</h1>
           <p class="typing reveal">
-            <span id="typeTarget"></span>
-            <span class="caret"></span>
+            <span id="typeTarget"></span><span class="caret" aria-hidden="true"></span>
           </p>
-
           <div class="cta reveal">
             <a class="btn primary" href="https://www.linkedin.com/in/dio-pratama-43a31a235/" target="_blank" rel="noopener">LinkedIn</a>
             <a class="btn ghost" href="https://github.com/diopratama99" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
 
-        <div class="hero-card reveal">
+        <aside class="hero-card reveal" aria-label="Profil singkat">
           <div class="stat">
             <span class="kicker">Focus</span>
             <strong>Flutter & Dart</strong>
@@ -81,47 +78,43 @@
             <span class="kicker">Traits</span>
             <strong>Fast learner • Adaptable • Problem solver</strong>
           </div>
-        </div>
+        </aside>
       </div>
-
       <div class="hero-bg" aria-hidden="true"></div>
     </section>
 
     <section id="about" class="container section reveal">
       <h2>About</h2>
       <p class="lead">
-        CS student focusing on Flutter & front-end.
-        With 2 years in IT Support, I bring a strong debugging mindset, clear communication, 
-        and hands-on ops experience to building polished apps.
+        CS student focusing on Flutter & front-end. With 2 years in IT Support, I bring a strong debugging mindset,
+        clear communication, and hands-on ops experience to building polished apps.
       </p>
     </section>
 
     <section id="skills" class="container section reveal">
       <h2>Skills</h2>
-      <ul class="skills-grid">
+      <ul class="skills-grid" role="list">
         <li class="skill">
           <div class="icon">
-            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter logo">
+            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
           </div>
           <div class="meta">
             <h3>Flutter</h3>
             <p>Rapid mobile UI with modern widgets & hot-reload.</p>
           </div>
         </li>
-
         <li class="skill">
           <div class="icon">
-            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart logo">
+            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart">
           </div>
           <div class="meta">
             <h3>Dart</h3>
             <p>Strongly-typed, async-friendly language for app logic.</p>
           </div>
         </li>
-
         <li class="skill">
           <div class="icon">
-            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
+            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
           </div>
           <div class="meta">
             <h3>Git & GitHub</h3>
@@ -140,15 +133,15 @@
             <h3>Personal Portfolio Website</h3>
             <p>Responsive, fast, and accessible portfolio site with light/dark mode and smooth animations.</p>
             <div class="actions">
-              <a class="btn ghost small" href="https://github.com/diopratama99/dio-pratama" target="_blank" rel="noopener">View on GitHub</a>
-              <a class="btn primary small" href="https://diopratama99.github.io/dio-pratama/" target="_blank" rel="noopener">Visit</a>
+              <a class="btn ghost small" href="https://github.com/diopratama99/dio-pratama" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn primary small" href="https://diopratama99.github.io/dio-pratama/" target="_blank" rel="noopener">Open</a>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="thumb">
-            <img class="thumb-img" loading="lazy" src="assets/img/server.svg" alt="Self-hosted server">
+          <div class="thumb thumb-center">
+            <img class="thumb-logo" loading="lazy" src="assets/img/server.svg" alt="Self-hosted server">
           </div>
           <div class="card-body">
             <h3>Self-Hosted Nextcloud Server</h3>
@@ -166,17 +159,15 @@
       <p class="lead">Let’s connect. I’m open to collaboration and opportunities.</p>
       <div class="socials">
         <a class="social" href="mailto:diodiopratama99@gmail.com" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" />
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" width="20" height="20" />
           diodiopratama99@gmail.com
         </a>
-
         <a class="social" href="https://www.linkedin.com/in/dio-pratama-43a31a235/" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="20" height="20" />
           LinkedIn
         </a>
-
         <a class="social" href="https://github.com/diopratama99/" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20" />
           GitHub
         </a>
       </div>
@@ -189,6 +180,6 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="main.js?v=3" defer></script>
 </body>
 </html>
