@@ -138,6 +138,12 @@ a{color:inherit}
   transform: translateY(-3px);
 }
 
+.meta-list{ margin:0 0 12px 16px; color:var(--muted); }
+.thumb-center{ display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg, color-mix(in oklab,var(--primary)30%,#cfe1ff),
+                                      color-mix(in oklab,var(--accent)35%,#e6f3ff)); }
+.thumb-logo{ width:88px; height:88px; object-fit:contain; opacity:.9; }
+
 .icon {
   width: 100px;   
   height: 100px;
@@ -154,11 +160,56 @@ a{color:inherit}
   object-fit: contain;
 }
 
+.thumb{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  object-fit: cover;  
+  display: block;
+}
+
+.thumb-img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    
+  object-position: center;
+}
+
+.thumb-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: min(4vw, 24px);
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--primary) 30%, #cfe1ff),
+    color-mix(in oklab, var(--accent) 35%, #e6f3ff));
+}
+
+.thumb-logo{
+  width: clamp(180px, 42%, 360px); 
+  height: auto;
+  object-fit: contain;
+  display: block;
+  opacity: .95;
+}
+
+@media (max-width: 700px){
+  .thumb-logo{ width: clamp(140px, 55%, 280px); }
+}
+
+.card-body{ padding: 16px; }
+.actions{ display: flex; gap: 10px; flex-wrap: wrap; }
+.btn.small{ padding: 9px 14px; border-radius: 10px; }
+
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .card{
   background:var(--surface);border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
   border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden
 }
+
 .thumb {
   width: 100%;
   aspect-ratio: 16/9;     
