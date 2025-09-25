@@ -50,3 +50,18 @@ const io = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Smooth scroll with prefers-reduced-motion respect
+const prefersReduced = window.matchMedia &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    const id = a.getAttribute('href');
+    if(!id || id==="#") return;
+    const t = document.querySelector(id);
+    if(!t) return;
+    e.preventDefault();
+    t.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth', block: 'start'});
+  });
+});
+

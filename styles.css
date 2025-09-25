@@ -244,3 +244,24 @@ a{color:inherit}
   .btn{transition:none}
   .nav-links{ left:0; right:0; }
 }
+
+/* Accessibility: skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: .5rem 1rem;
+  background: #ffd54f;
+  color: #000;
+  border-radius: .4rem;
+  z-index: 1000;
+}
+

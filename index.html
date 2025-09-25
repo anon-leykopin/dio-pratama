@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dio Pratama — Portfolio</title>
   <meta name="description" content="Dio Pratama — Informatics student focusing on Mobile & Frontend (Flutter & Dart).">
+
+  <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Preload CSS for faster render -->
+  <link rel="preload" as="style" href="styles.css">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/svg+xml"
-      href="https://diopratama99.github.io/dio-pratama/assets/icons/profile.svg?v=4" sizes="any">
-  <link rel="mask-icon" href="assets/icons/profile.svg" color="#004DCC"> 
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/profile.svg" sizes="any">
+  <link rel="mask-icon" href="assets/img/profile.svg" color="#004DCC"> 
   <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Dio Pratama — Portfolio" />
+  <meta property="og:description" content="Personal portfolio and projects of Dio Pratama." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Home">
-  <img class="brand-logo" src="assets/img/profile.svg" alt="Dio Pratama logo" width="36" height="36">
-  <span class="brand-text">Dio Pratama</span>
-</a>
+        <img class="brand-logo" src="assets/img/profile.svg" alt="Dio Pratama logo" width="36" height="36">
+        <span class="brand-text">Dio Pratama</span>
+      </a>
 
       <button id="burger" class="burger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -36,7 +51,7 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="main">
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-text">
@@ -83,98 +98,88 @@
 
     <section id="skills" class="container section reveal">
       <h2>Skills</h2>
-<ul class="skills-grid">
-  <li class="skill">
-    <div class="icon">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter logo">
-    </div>
-    <div class="meta">
-      <h3>Flutter</h3>
-      <p>Rapid mobile UI with modern widgets & hot-reload.</p>
-    </div>
-  </li>
+      <ul class="skills-grid">
+        <li class="skill">
+          <div class="icon">
+            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter logo">
+          </div>
+          <div class="meta">
+            <h3>Flutter</h3>
+            <p>Rapid mobile UI with modern widgets & hot-reload.</p>
+          </div>
+        </li>
 
-  <li class="skill">
-    <div class="icon">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart logo">
-    </div>
-    <div class="meta">
-      <h3>Dart</h3>
-      <p>Strongly-typed, async-friendly language for app logic.</p>
-    </div>
-  </li>
+        <li class="skill">
+          <div class="icon">
+            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart logo">
+          </div>
+          <div class="meta">
+            <h3>Dart</h3>
+            <p>Strongly-typed, async-friendly language for app logic.</p>
+          </div>
+        </li>
 
-  <li class="skill">
-    <div class="icon">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
-    </div>
-    <div class="meta">
-      <h3>Git & GitHub</h3>
-      <p>Clean commits, issues, PRs, and Pages deployment.</p>
-    </div>
-  </li>
-</ul>
+        <li class="skill">
+          <div class="icon">
+            <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
+          </div>
+          <div class="meta">
+            <h3>Git & GitHub</h3>
+            <p>Clean commits, issues, PRs, and Pages deployment.</p>
+          </div>
+        </li>
+      </ul>
     </section>
 
-<section id="projects" class="container section reveal">
-  <h2>Projects</h2>
+    <section id="projects" class="container section reveal">
+      <h2>Projects</h2>
+      <div class="card-grid">
+        <article class="card">
+          <img class="thumb" loading="lazy" src="assets/img/portfolio.svg" alt="Portfolio illustration">
+          <div class="card-body">
+            <h3>Personal Portfolio Website</h3>
+            <p>Responsive, fast, and accessible portfolio site with light/dark mode and smooth animations.</p>
+            <div class="actions">
+              <a class="btn ghost small" href="https://github.com/diopratama99/dio-pratama" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="btn primary small" href="https://diopratama99.github.io/dio-pratama/" target="_blank" rel="noopener">Visit</a>
+            </div>
+          </div>
+        </article>
 
-  <div class="card-grid">
-    <article class="card">
-      <img class="thumb" src="assets/img/portfolio.svg" alt="Portfolio illustration">
-
-      <div class="card-body">
-        <h3>Personal Portfolio Website</h3>
-        <p>Responsive, fast, and accessible portfolio site with light/dark mode and smooth animations.</p>
-
-        <div class="actions">
-          <a class="btn ghost small"
-             href="https://github.com/diopratama99/dio-pratama"
-             target="_blank" rel="noopener">View on GitHub</a>
-
-          <a class="btn primary small"
-             href="https://diopratama99.github.io/dio-pratama/"
-             target="_blank" rel="noopener">Visit</a>
-        </div>
+        <article class="card">
+          <div class="thumb">
+            <img class="thumb-img" loading="lazy" src="assets/img/server.svg" alt="Self-hosted server">
+          </div>
+          <div class="card-body">
+            <h3>Self-Hosted Nextcloud Server</h3>
+            <p>Create a server for cloud file storage needs and collaboration using the Nextcloud base.</p>
+            <div class="actions">
+              <a class="btn ghost small" href="#" onclick="alert('Repo is private');return false;">Private Repo</a>
+            </div>
+          </div>
+        </article>
       </div>
-    </article>
-
-   <article class="card">
-  <div class="thumb">
-  <img class="thumb-img" src="assets/img/server.svg" alt="Self-hosted server">
-</div>
-  <div class="card-body">
-    <h3>Self-Hosted Nextcloud Server</h3>
-    <p>Create a server for cloud file storage needs and collaboration using the Nextcloud base.</p>
-    <div class="actions">
-      <a class="btn ghost small" href="#" onclick="alert('Repo is private');return false;">Private Repo</a>
-    </div>
-  </div>
-</article>
-
-  </div>
-</section>
+    </section>
 
     <section id="contact" class="container section reveal">
       <h2>Contact</h2>
       <p class="lead">Let’s connect. I’m open to collaboration and opportunities.</p>
-<div class="socials">
-  <a class="social" href="mailto:diodiopratama99@gmail.com" target="_blank" rel="noopener">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" />
-    diodiopratama99@gmail.com
-  </a>
+      <div class="socials">
+        <a class="social" href="mailto:diodiopratama99@gmail.com" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" />
+          diodiopratama99@gmail.com
+        </a>
 
-  <a class="social" href="https://www.linkedin.com/in/dio-pratama-43a31a235/" target="_blank" rel="noopener">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
-    LinkedIn
-  </a>
+        <a class="social" href="https://www.linkedin.com/in/dio-pratama-43a31a235/" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
+          LinkedIn
+        </a>
 
-  <a class="social" href="https://github.com/diopratama99/" target="_blank" rel="noopener">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-    GitHub
-  </a>
-</div>
-
+        <a class="social" href="https://github.com/diopratama99/" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+          GitHub
+        </a>
+      </div>
     </section>
   </main>
 
