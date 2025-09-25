@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dio Pratama — Portfolio</title>
+  <meta name="description" content="Dio Pratama — Informatics student focusing on Mobile & Frontend (Flutter & Dart).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-logo">DP</span>
+        <span class="brand-text">Dio Pratama</span>
+      </a>
+
+      <button id="burger" class="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="menu" class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" class="toggle" aria-label="Toggle theme">☀️</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow reveal">Computer Science Student</p>
+          <h1 class="reveal">Dio Pratama</h1>
+          <p class="typing reveal">
+            <span id="typeTarget"></span>
+            <span class="caret"></span>
+          </p>
+
+          <div class="cta reveal">
+            <a class="btn primary" href="https://www.linkedin.com/in/dio-pratama-43a31a235/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn ghost" href="https://github.com/anon-leykopin" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <!-- decorative/summary card -->
+          <div class="stat">
+            <span class="kicker">Focus</span>
+            <strong>Flutter & Dart</strong>
+          </div>
+          <div class="stat">
+            <span class="kicker">Interest</span>
+            <strong>Mobile & Frontend</strong>
+          </div>
+          <div class="stat">
+            <span class="kicker">Traits</span>
+            <strong>Fast learner • Adaptable • Problem solver</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="container section reveal">
+      <h2>About</h2>
+      <p class="lead">
+        Fast learner, highly adaptable, problem solver, and multilingual.
+        I’m an Informatics student passionate about crafting smooth mobile experiences
+        and clean, accessible UIs.
+      </p>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section id="skills" class="container section reveal">
+      <h2>Skills</h2>
+<ul class="skills-grid">
+  <li class="skill">
+    <div class="icon">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter logo">
+    </div>
+    <div class="meta">
+      <h3>Flutter</h3>
+      <p>Rapid mobile UI with modern widgets & hot-reload.</p>
+    </div>
+  </li>
+
+  <li class="skill">
+    <div class="icon">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart logo">
+    </div>
+    <div class="meta">
+      <h3>Dart</h3>
+      <p>Strongly-typed, async-friendly language for app logic.</p>
+    </div>
+  </li>
+
+  <li class="skill">
+    <div class="icon">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
+    </div>
+    <div class="meta">
+      <h3>Git & GitHub</h3>
+      <p>Clean commits, issues, PRs, and Pages deployment.</p>
+    </div>
+  </li>
+</ul>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section id="projects" class="container section reveal">
+      <h2>Projects</h2>
+
+      <div class="card-grid">
+        <!-- portfolio website placeholder -->
+        <article class="card">
+          <div class="thumb thumb-gradient"></div>
+          <div class="card-body">
+            <h3>Personal Portfolio</h3>
+            <p>Responsive, fast, and accessible portfolio site with light/dark mode and smooth animations.</p>
+            <div class="actions">
+              <a class="btn ghost small" href="#" onclick="alert('Repo will be added soon.'); return false;">View on GitHub</a>
+              <a class="btn primary small" href="#top">Live Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="container section reveal">
+      <h2>Contact</h2>
+      <p class="lead">Let’s connect. I’m open to collaboration and opportunities.</p>
+      <div class="socials">
+        <a class="social" href="mailto:diodiopratama99@gmail.com">📧 diodiopratama99@gmail.com</a>
+        <a class="social" target="_blank" rel="noopener" href="https://www.linkedin.com/in/dio-pratama-43a31a235/">🔗 LinkedIn</a>
+        <a class="social" target="_blank" rel="noopener" href="https://github.com/anon-leykopin">💻 GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Dio Pratama • Built with HTML, CSS & JS</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
