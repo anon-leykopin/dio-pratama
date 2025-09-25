@@ -156,9 +156,13 @@ a{color:inherit}
   background:var(--surface);border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
   border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden
 }
-.thumb{aspect-ratio:16/9;background:#dfe7f7}
-.thumb-gradient{
-  background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 30%, #cfe1ff), color-mix(in oklab, var(--accent) 35%, #e6f3ff));
+.thumb {
+  width: 100%;
+  aspect-ratio: 16/9;     /* biar proporsional */
+  object-fit: contain;    /* biar SVG full tapi tidak kepotong */
+  display: block;
+  background: none;       /* matikan gradient lama */
+  padding: 12px;          /* opsional, biar ada ruang */
 }
 .card-body{padding:16px}
 .card h3{margin:0 0 6px}
