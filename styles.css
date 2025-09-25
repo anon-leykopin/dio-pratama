@@ -23,7 +23,11 @@ body.dark{
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{
+    height:100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 body{
   margin:0;
   font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -49,13 +53,12 @@ a{color:inherit}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}
 .brand-logo{
-  width:36px; height:36px;
-  display:grid; place-items:center;
-  border-radius:50%;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color:#fff; font-weight:700;
-  font-size:15px;
-  box-shadow: var(--shadow);
+  width: 36px;
+  height: 36px;
+  display: block;
+  border-radius: 50%;
+  box-shadow: var(--shadow);  
+  flex: 0 0 auto;
 }
 .nav-links{display:flex;align-items:center;gap:20px}
 .nav-links a{text-decoration:none;color:var(--muted);font-weight:600}
@@ -82,7 +85,7 @@ a{color:inherit}
 }
 
 .hero{
-  position:relative;min-height:100svh;display:grid;place-items:center;isolation:isolate
+  position:relative;min-height:100svh;display:grid;place-items:center;isolation:isolate;overflow:hidden;
 }
 .hero-bg{
   position:absolute;inset:-20% -10% auto -10%;height:70%;
@@ -158,11 +161,11 @@ a{color:inherit}
 }
 .thumb {
   width: 100%;
-  aspect-ratio: 16/9;     /* biar proporsional */
-  object-fit: contain;    /* biar SVG full tapi tidak kepotong */
+  aspect-ratio: 16/9;     
+  object-fit: contain;    
   display: block;
-  background: none;       /* matikan gradient lama */
-  padding: 12px;          /* opsional, biar ada ruang */
+  background: none;       
+  padding: 12px;         
 }
 .card-body{padding:16px}
 .card h3{margin:0 0 6px}
@@ -185,7 +188,8 @@ a{color:inherit}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.is-visible{opacity:1;transform:none}
 
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion: reduce) and (max-width:860px){
   .reveal{transition:none;opacity:1;transform:none}
   .btn{transition:none}
+  .nav-links{ left:0; right:0; }
 }
