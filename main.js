@@ -1,4 +1,3 @@
-// ===== Theme toggle with localStorage =====
 const body = document.body;
 const themeBtn = document.getElementById('themeToggle');
 function setTheme(mode){
@@ -11,7 +10,6 @@ if(saved){ setTheme(saved); }
 else{ setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
 themeBtn.addEventListener('click', () => setTheme(body.classList.contains('dark') ? 'light' : 'dark'));
 
-// ===== Burger menu (mobile) =====
 const burger = document.getElementById('burger');
 const menu = document.getElementById('menu');
 burger.addEventListener('click', () => {
@@ -23,7 +21,6 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   menu.classList.remove('open'); burger.classList.remove('active'); burger.setAttribute('aria-expanded','false');
 }));
 
-// ===== Typing effect in hero =====
 const typeTarget = document.getElementById('typeTarget');
 const phrases = [
   "Aspiring Mobile & Frontend Developer",
@@ -45,7 +42,6 @@ function typeLoop(){
 }
 typeLoop();
 
-// ===== Reveal on scroll =====
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
@@ -53,5 +49,4 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// ===== Year in footer =====
 document.getElementById('year').textContent = new Date().getFullYear();

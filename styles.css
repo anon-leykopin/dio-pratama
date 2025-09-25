@@ -1,20 +1,17 @@
-/* ===== Design Tokens ===== */
 :root{
-  /* Light */
   --bg: #ffffff;
   --surface: #f6f8fb;
   --text: #0e1a2b;
   --muted: #5b6b82;
-  --primary: #004DCC;    /* deep blue */
-  --accent:  #70B0C7;    /* soft blue-teal */
-  --accent-2:#A5C1E6;    /* pale blue */
+  --primary: #004DCC;    
+  --accent:  #70B0C7;    
+  --accent-2:#A5C1E6;    
   --shadow: 0 10px 30px rgba(15,35,80,.1);
   --radius: 14px;
   --transition: .28s cubic-bezier(.2,.8,.2,1);
 }
 
 body.dark{
-  /* Dark */
   --bg:#0b1220;
   --surface:#111a2c;
   --text:#e6edf7;
@@ -38,13 +35,11 @@ body{
 }
 a{color:inherit}
 
-/* ===== Layout ===== */
 .container{width:min(1120px,92%);margin-inline:auto}
 .section{padding:72px 0;border-top:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
 .section h2{font-size:clamp(22px,3.6vw,28px);margin-bottom:16px}
 .lead{color:var(--muted);max-width:72ch}
 
-/* ===== Header / Nav ===== */
 .site-header{
   position:sticky;top:0;z-index:40;
   backdrop-filter:saturate(1.2) blur(10px);
@@ -67,7 +62,6 @@ a{color:inherit}
 .nav-links a:hover{color:var(--primary)}
 .toggle{border:1px solid color-mix(in oklab, var(--text) 18%, transparent);background:var(--surface);color:var(--text);padding:8px 10px;border-radius:10px;cursor:pointer}
 
-/* Burger (mobile) */
 .burger{display:none;background:transparent;border:0;cursor:pointer}
 .burger span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;transition:var(--transition);border-radius:3px}
 .burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -77,7 +71,7 @@ a{color:inherit}
 @media (max-width:860px){
   .burger{display:block}
   .nav-links{
-    position:fixed;inset:64px 0 auto 0; /* top under header */
+    position:fixed;inset:64px 0 auto 0; 
     background:var(--bg);
     border-bottom:1px solid color-mix(in oklab, var(--text) 10%, transparent);
     transform:translateY(-120%);
@@ -87,7 +81,6 @@ a{color:inherit}
   .nav-links.open{transform:translateY(0)}
 }
 
-/* ===== Hero ===== */
 .hero{
   position:relative;min-height:100svh;display:grid;place-items:center;isolation:isolate
 }
@@ -117,7 +110,6 @@ a{color:inherit}
 .btn.ghost:hover{transform:translateY(-2px);color:var(--primary)}
 .btn.small{padding:9px 14px;border-radius:10px}
 
-/* Hero side card */
 .hero-card{
   background:var(--surface);border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
   border-radius: var(--radius);padding:18px;box-shadow:var(--shadow)
@@ -126,12 +118,11 @@ a{color:inherit}
 .stat + .stat{margin-top:10px;border-top:1px dashed color-mix(in oklab, var(--text) 10%, transparent);padding-top:16px}
 .kicker{display:block;color:var(--muted);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:1px}
 
-/* ===== Skills ===== */
 .skills-grid{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .skill {
   display: flex;
   gap: 14px;
-  align-items: center;   /* ⬅️ ini bikin teks rata tengah dengan ikon */
+  align-items: center; 
   background: var(--surface);
   border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
   border-radius: var(--radius);
@@ -144,9 +135,8 @@ a{color:inherit}
   transform: translateY(-3px);
 }
 
-/* reset icon container */
 .icon {
-  width: 100px;   /* kotak ikon lebih besar */
+  width: 100px;   
   height: 100px;
   display: flex;
   align-items: center;
@@ -161,9 +151,6 @@ a{color:inherit}
   object-fit: contain;
 }
 
-
-
-/* ===== Projects ===== */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .card{
   background:var(--surface);border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
@@ -178,7 +165,6 @@ a{color:inherit}
 .card p{color:var(--muted);margin:0 0 12px}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 
-/* ===== Socials ===== */
 .socials{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
 .social{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:var(--surface);
   border:1px solid color-mix(in oklab, var(--text) 12%, transparent);text-decoration:none;font-weight:600}
@@ -190,15 +176,11 @@ a{color:inherit}
   object-fit: contain;
 }
 
-
-/* ===== Footer ===== */
 .site-footer{padding:28px 0;border-top:1px solid color-mix(in oklab, var(--text) 10%, transparent);text-align:center;color:var(--muted)}
 
-/* ===== Reveal on scroll ===== */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .reveal.is-visible{opacity:1;transform:none}
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   .reveal{transition:none;opacity:1;transform:none}
   .btn{transition:none}
