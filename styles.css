@@ -184,6 +184,13 @@ a{color:inherit}
   border:1px solid color-mix(in oklab, var(--text) 12%, transparent);text-decoration:none;font-weight:600}
 .social:hover{color:var(--primary);transform:translateY(-1px);box-shadow:var(--shadow)}
 
+.social img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+
 /* ===== Footer ===== */
 .site-footer{padding:28px 0;border-top:1px solid color-mix(in oklab, var(--text) 10%, transparent);text-align:center;color:var(--muted)}
 
