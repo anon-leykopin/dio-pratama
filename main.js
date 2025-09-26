@@ -32,7 +32,7 @@ menu?.querySelectorAll('a[href^="#"]').forEach(a => {
 /* Typing */
 const target = document.getElementById('typeTarget');
 const phrases = [
-  'Aspiring Mobile & Frontend Developer',
+  'Interest to Mobile & Frontend Developer',
   'Fast Learner · Adaptable · Problem Solver',
   'Flutter & Dart Enthusiast'
 ];
