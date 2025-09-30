@@ -263,3 +263,12 @@ a{color:inherit}
 @media (max-width:700px){
   .thumb-logo{ width: clamp(140px, 55%, 280px); }
 }
+
+/* Perbesar header image untuk TemankuWebApp */
+.thumb--big{ padding:0 } /* lebih lega daripada .thumb default */
+@media (max-width:700px){
+  .thumb--big{ padding:4px } /* biar tetap nafas di layar kecil */
+}
+
+/* Kalau kamu lupa pakai class thumb--big, selektor cadangan ini tetap membesarkan */
+.thumb[src$="financeapp.svg"]{ padding:0 }
