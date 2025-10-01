@@ -2,6 +2,18 @@
 // Particles minimalis: ringan, subtle, hormati reduced motion, pause saat tab hidden.
 // Versi ini: link distance & jumlah partikel ADAPTIF terhadap ukuran canvas (desktop ≠ mobile).
 
+(function(){
+  const IS_MOBILE = window.matchMedia('(max-width: 767px)').matches;
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+
+  // MOBILE/REDUCED: hapus canvas, jangan init sama sekali
+  if (IS_MOBILE || REDUCED) { canvas.remove(); return; }
+
+  // ... sisanya tetap (kode animasi asli) ...
+})();
+
 (function () {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;

@@ -534,3 +534,21 @@ body.dark .glass-card span{ color:rgba(255,255,255,0.86) }
     padding:18px 16px; /* bila hero-card sudah punya padding, boleh diabaikan */
   }
 }
+
+/* ===== Mobile: matikan semua animasi untuk hemat baterai/CPU ===== */
+@media (max-width: 767px){
+  /* underline runner & caret */
+  .sig-underline .ul-runner{ animation: none !important; }
+  .caret{ animation: none !important; }
+
+  /* orbit chips: nonaktif (boleh hide agar benar2 ringan) */
+  .hero-orbit{ display:none !important; }
+  .chip{ animation: none !important; }
+
+  /* reveal / transition */
+  .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+
+  /* tombol & tilt */
+  .btn{ transition:none !important; }
+  .hero-card-tilt{ transition: none !important; transform: none !important; }
+}

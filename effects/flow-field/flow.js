@@ -2,6 +2,17 @@
 // Flow field ringan: vektor sinus/cos yang drift halus (tanpa library).
 // Desktop: animasi 30–45fps. Mobile & reduced-motion: render 1 frame statis.
 
+(function(){
+  const IS_MOBILE = window.matchMedia('(max-width: 767px)').matches;
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('flow-canvas');
+  if (!canvas) return;
+
+  if (IS_MOBILE || REDUCED) { canvas.remove(); return; }
+
+  // ... sisanya tetap ...
+})();
+
 (function () {
   const canvas = document.getElementById('flow-canvas');
   if (!canvas) return;

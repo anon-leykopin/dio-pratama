@@ -75,6 +75,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
+const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+if (isMobile || prefersReduced) {
+  // matikan caret blink via class/inline style
+  document.querySelectorAll('.caret').forEach(el => el.style.animation = 'none');
+
+  // kalau mau hentikan typing sepenuhnya, tampilkan 1 kalimat saja:
+  const target = document.getElementById('typeTarget');
+  if (target) target.textContent = 'Interest to Mobile & Frontend';
+  // lalu jangan panggil typeLoop di bawah (guard)
+} else {
+  // jalankan typing normal (panggilan typeLoop() yang sudah kamu punya)
+}
+
 /* Footer year */
 document.getElementById('year').textContent = new Date().getFullYear();
 
