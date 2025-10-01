@@ -24,6 +24,9 @@
   <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <canvas id="flow-canvas" class="bg-flow" aria-hidden="true"></canvas>
+  <canvas id="particles-canvas" class="bg-particles" aria-hidden="true"></canvas>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
@@ -64,7 +67,7 @@
           </div>
         </div>
 
-        <aside class="hero-card reveal" aria-label="Profil singkat">
+        <aside class="hero-card glass-card reveal" aria-label="Profil singkat">
           <div class="stat">
             <span class="kicker">Focus</span>
             <strong>Flutter & Dart</strong>
@@ -292,7 +295,7 @@
       <p class="lead">Let’s connect. I’m open to collaboration and opportunities.</p>
       <div class="socials">
         <a class="social" href="mailto:diodiopratama99@gmail.com" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="" width="20" height="20" />
+          <img loading="lazy" src="assets/icons/gmail.svg" alt="" width="20" height="20" />
           diodiopratama99@gmail.com
         </a>
         <a class="social" href="https://www.linkedin.com/in/dio-pratama-43a31a235/" target="_blank" rel="noopener">
@@ -309,10 +312,12 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Dio Pratama • Built with HTML, CSS & JS</p>
+      <p>&copy; <span id="year"></span> Dio Pratama</p>
     </div>
   </footer>
 
   <script src="main.js?v=4" defer></script>
+  <script src="effects/flow-field/flow.js?v=1" defer></script>
+  <script src="effects/particles/particles.js?v=1" defer></script>
 </body>
 </html>
