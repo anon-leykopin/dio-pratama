@@ -98,3 +98,84 @@ function updateTimelineAxis(){
 window.addEventListener('load', updateTimelineAxis);
 window.addEventListener('resize', updateTimelineAxis);
 document.fonts?.ready.then(updateTimelineAxis);
+
+/* ============================================================
+   Hero card: subtle tilt (desktop) + parallax on scroll
+   - hormati prefers-reduced-motion
+   - tilt hanya di desktop
+   ============================================================ */
+(function () {
+  const card = document.querySelector('.hero-card-tilt');
+  if (!card) return;
+
+  // pakai nilai prefersReduced yang sudah ada; fallback jika belum terdefinisi
+  const prefReduced =
+    (typeof prefersReduced !== 'undefined')
+      ? prefersReduced
+      : window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const isMobile = window.matchMedia('(max-width: 860px)').matches;
+
+  // Parallax relatif ke section hero (clamp ±10px)
+const hero = document.querySelector('.hero');
+function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+function onScroll() {
+  if (prefReduced || !hero) return;
+
+  // scroll lokal di dalam hero: 0..heroH
+  const heroTop = hero.offsetTop;
+  const heroH   = hero.offsetHeight || 1;
+  const y       = (window.scrollY || window.pageYOffset || 0) - heroTop;
+  const local   = clamp(y, 0, heroH);
+
+  // progress -1..1: -1 (awal hero) → 0 (tengah) → 1 (akhir)
+  const p = ((local / heroH) * 2) - 1;
+
+  // translateY kecil, di-clamp agar tidak “melorot”
+  const translate = clamp(p * 10, -10, 10); // px
+
+  const tiltSuffix = card._tiltSuffix || '';
+  card.style.transform = `translateY(${translate.toFixed(1)}px)` + tiltSuffix;
+}
+
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll);
+
+  // Tilt ringan mengikuti pointer (desktop only)
+  if (!prefReduced && !isMobile) {
+    const maxTilt = 3; // derajat maksimum
+    const damp = 0.12; // smoothing
+    let tx = 0, ty = 0; // target rotY (tx) & rotX (ty)
+    let rx = 0, ry = 0; // rendered rotX/rotY
+
+    function onMove(e) {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      // rotasi kecil; clamp ke [-1,1]
+      const cl = (v) => Math.max(-1, Math.min(1, v));
+      tx = cl(dx) * maxTilt;  // rotY
+      ty = cl(-dy) * maxTilt; // rotX
+    }
+    function onLeave() { tx = 0; ty = 0; }
+
+    function raf() {
+      // easing ke target
+      rx += (ty - rx) * damp; // rotX render
+      ry += (tx - ry) * damp; // rotY render
+      card._tiltSuffix = ` rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+      // pertahankan translateY dari parallax
+      const currentTranslate = card.style.transform.match(/translateY\([^)]+\)/)?.[0] || 'translateY(0px)';
+      card.style.transform = currentTranslate + card._tiltSuffix;
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseleave', onLeave);
+  }
+})();

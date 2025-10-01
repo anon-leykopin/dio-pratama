@@ -1,5 +1,6 @@
 // effects/particles/particles.js
 // Particles minimalis: ringan, subtle, hormati reduced motion, pause saat tab hidden.
+// Versi ini: link distance & jumlah partikel ADAPTIF terhadap ukuran canvas (desktop ≠ mobile).
 
 (function () {
   const canvas = document.getElementById('particles-canvas');
@@ -17,15 +18,15 @@
   // Simple feature flags
   const IS_MOBILE = window.matchMedia('(max-width: 767px)').matches;
 
-  // Config bisa kamu tweak
+  // Config — nilai dasar; beberapa akan dioverride secara adaptif saat resize()
   const cfg = {
-    density: 0.000045,           // jumlah partikel per px^2 (akan dikalikan area)
+    density: 0.000045,           // (tidak lagi dipakai langsung; tetap dibiarkan sbg fallback)
     minCount: 16,
-    maxCount: 42,
+    maxCount: 70,                // naikkan sedikit agar desktop bisa lebih ramai
     speed: 0.15,                 // px per frame (sebelum dikali dpr)
     radius: [1.0, 2.4],          // ukuran titik (min, max)
-    linkDist: 120,               // jarak maksimum garis
-    linkAlpha: 0.10,             // opasitas garis
+    linkDist: 120,               // jarak garis (akan di-scale)
+    linkAlpha: 0.24,             // sedikit dinaikkan agar terlihat di layar besar
     dotAlpha: 0.85,              // opasitas titik
     repelRadius: 120,            // radius interaksi pointer
     repelStrength: 0.06,         // kekuatan repel
@@ -38,33 +39,52 @@
       [14, 165, 233],   // sky-500
       [37, 99, 235],    // blue-600
       [34, 211, 238]    // cyan-400
-    ]
+    ],
+    // nilai adaptif hasil hitung resize()
+    _linkDist: 120,
+    _count: 32
   };
 
-  // Terapkan tweak mobile
+  // Terapkan tweak mobile untuk opacity default
   if (IS_MOBILE) {
-    cfg.linkDist = cfg.mobile.linkDist;
     cfg.dotAlpha = cfg.mobile.dotAlpha;
   }
 
-  // Setup ukuran canvas
+  // --- NEW: skala parameter sesuai luas canvas --------------------------------
+  function computeParticleParams(w, h) {
+  const area = w * h;
+  const BASE_AREA = 1280 * 720;
+  const scale = Math.sqrt(area / BASE_AREA);
+
+  // Desktop butuh lebih ramai supaya garis ketemu
+  const count = Math.max(40, Math.min(90, Math.round(area / 40000)));
+
+  // Jarak koneksi dibuat lebih longgar
+  const baseLink = IS_MOBILE ? cfg.mobile.linkDist : cfg.linkDist; // 96 vs 120
+  const linkDist = Math.max(baseLink, Math.round(baseLink * scale * 1.25));
+
+  return { count, linkDist };
+}
+
+  // Setup ukuran canvas + hitung parameter adaptif
   function resize() {
     const { innerWidth: w, innerHeight: h } = window;
+
+    // DPR bisa berubah saat pindah layar—ambil ulang & cap
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+
     canvas.width = Math.floor(w * dpr);
     canvas.height = Math.floor(h * dpr);
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
 
-    // Hitung jumlah partikel berdasar area
-    const area = w * h;
-    const target = clamp(
-      Math.round(area * cfg.density),
-      cfg.minCount,
-      cfg.maxCount
-    );
+    // Param adaptif (jumlah + link distance)
+    const params = computeParticleParams(w, h);
+    cfg._linkDist = params.linkDist;
+    cfg._count = params.count;
 
-    // Inisialisasi ulang partikel jika jumlah berbeda jauh (pertama kali juga)
-    particles = spawnParticles(target, w, h);
+    // Inisialisasi ulang partikel
+    particles = spawnParticles(cfg._count, w, h);
   }
 
   function spawnParticles(count, w, h) {
@@ -130,17 +150,22 @@
       ctx.fill();
     }
 
-    // Gambar garis penghubung tipis
-    ctx.lineWidth = 1 * dpr;
+    // Gambar garis penghubung tipis — gunakan link distance adaptif
+    const linkPx = (cfg._linkDist || cfg.linkDist) * dpr;
+    // sedikit lebih tebal agar tampak di layar besar/high-DPR
+    ctx.lineWidth = Math.max(0.9, 0.9 * dpr);
+
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const a = particles[i], b = particles[j];
         const dx = a.x - b.x, dy = a.y - b.y;
         const dist = Math.hypot(dx, dy);
-        if (dist < cfg.linkDist * dpr) {
-          const t = 1 - dist / (cfg.linkDist * dpr); // semakin dekat, semakin opak
-          const c = a.c; // pakai warna titik A
-          ctx.strokeStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${cfg.linkAlpha * t})`;
+        if (dist < linkPx) {
+          const t = 1 - dist / linkPx;                 // 0..1 (dekat = 1)
+          // kasih floor opacity supaya tetap kelihatan walau agak jauh
+          const alpha = cfg.linkAlpha * (0.4 + 0.6 * t);
+          const c = a.c;
+          ctx.strokeStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${alpha})`;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);

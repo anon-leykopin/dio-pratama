@@ -37,7 +37,7 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
-a{ color:inherit }
+a{ color:inherit; text-decoration:none }
 
 .container{ width:min(1120px,92%); margin-inline:auto }
 .section{
@@ -70,11 +70,11 @@ a{ color:inherit }
   display:flex; align-items:center; justify-content:space-between;
   gap:.75rem; padding:0 16px;
 }
-.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:800 }
+.brand{ display:flex; align-items:center; gap:10px; font-weight:800 }
 .brand-logo{ width:32px; height:32px; display:block; border-radius:50%; box-shadow:var(--shadow) }
 
 .nav-links{ display:flex; align-items:center; gap:20px }
-.nav-links a{ padding:6px 8px; text-decoration:none; color:var(--muted); font-weight:600 }
+.nav-links a{ padding:6px 8px; color:var(--muted); font-weight:600 }
 .nav-links a:hover{ color:var(--primary) }
 
 #themeToggle,.toggle{
@@ -118,6 +118,7 @@ a{ color:inherit }
   position:relative; min-height:100svh;
   display:grid; place-items:center; isolation:isolate; overflow:hidden
 }
+
 /* (Legacy) dekorasi hero */
 .hero-bg{
   position:absolute; inset:-20% -10% auto -10%; height:70%;
@@ -126,21 +127,58 @@ a{ color:inherit }
     radial-gradient(1000px 600px at 90% 0%, color-mix(in oklab,var(--primary) 25%,transparent), transparent 60%);
   filter:saturate(1.15) blur(30px); z-index:-1; opacity:.7;
 }
-/* Dark: tipiskan haze dekoratif */
-body.dark .hero-bg{ opacity:.35; }
+body.dark .hero-bg{ opacity:.35 }
 
 .hero-inner{ display:grid; gap:36px; grid-template-columns:1.4fr .9fr; align-items:center }
 @media (max-width:860px){ .hero-inner{ grid-template-columns:1fr; gap:24px } }
 
 .eyebrow{ color:var(--primary); font-weight:800; letter-spacing:1.2px; text-transform:uppercase; font-size:12px }
-.hero h1{ font-size:clamp(38px,8vw,64px); margin:6px 0 6px }
-.typing{ min-height:34px; color:var(--muted); font-size:clamp(16px,2.6vw,18px) }
+
+/* H1 + underline */
+.hero h1{
+  display:inline-block;
+  position:relative;
+  font-size:clamp(38px,8vw,64px);
+  margin:6px 0 8px;
+  line-height:1.05;
+}
+.h1-text{ display:block }
+
+/* Underline wrapper */
+.sig-underline{
+  position:absolute; left:0; right:0; bottom:-6px;
+  display:block; height:10px; pointer-events:none;
+}
+.sig-underline svg{ width:100%; height:100%; display:block }
+
+/* Base line (statis) + Runner (loop) */
+.sig-underline .ul-base{
+  stroke: currentColor;
+  stroke-width: 3.25;
+  stroke-linecap: round;
+  opacity:.9;
+}
+.sig-underline .ul-runner{
+  stroke: var(--primary);
+  stroke-width: 3.25;
+  stroke-linecap: round;
+  stroke-dasharray: 160 640;
+  stroke-dashoffset: 640;
+  animation: underline-run 2.2s linear infinite;
+  opacity:.9;
+}
+@keyframes underline-run{ to{ stroke-dashoffset: 0 } }
+@media (prefers-reduced-motion: reduce){
+  .sig-underline .ul-runner{ animation:none }
+}
+
+.typing{ min-height:34px; color:var(--muted); font-size:clamp(16px,2.6vw,18px); margin-top:8px }
 .caret{ display:inline-block; width:2px; height:1.1em; background:var(--primary); margin-left:6px; animation:blink 1s step-end infinite }
 @keyframes blink{ 50%{ opacity:0 } }
 
 .cta{ display:flex; gap:12px; margin-top:18px }
 .btn{
-  display:inline-block; padding:12px 18px; border-radius:12px; font-weight:700; text-decoration:none;
+  display:inline-block; padding:12px 18px; border-radius:12px; font-weight:700;
   transition:transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
   box-shadow:var(--shadow)
 }
@@ -150,20 +188,56 @@ body.dark .hero-bg{ opacity:.35; }
 .btn.ghost:hover{ transform:translateY(-2px); color:var(--primary) }
 .btn.small{ padding:9px 14px; border-radius:10px }
 
+/* Hero card (gunakan .glass-card di HTML agar efek kaca aktif) */
 .hero-card{
-  background:var(--surface);
-  border:1px solid color-mix(in oklab,var(--text) 10%,transparent);
   border-radius:var(--radius);
   padding:18px;
-  box-shadow:var(--shadow)
+  box-shadow:var(--shadow);
 }
 .stat{ padding:12px; border-radius:12px }
 .stat + .stat{
   margin-top:10px;
-  border-top:1px dashed color-mix(in oklab,var(--text) 10%,transparent);
-  padding-top:16px
+  border-top:1px dashed color-mix(in oklab,var(--text) 16%,transparent);
+  padding-top:16px; opacity:.95;
 }
 .kicker{ display:block; color:var(--muted); font-weight:700; text-transform:uppercase; font-size:11px; letter-spacing:1px }
+
+/* Orbit chips */
+.hero-text{ position:relative }
+.hero-orbit{
+  position:absolute; inset:-32px; z-index:-1; pointer-events:none;
+}
+.chip{
+  position:absolute; transform:translate(-50%,-50%);
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:34px; height:28px; padding:0 10px; border-radius:999px;
+  font-weight:800; font-size:12px; letter-spacing:.2px;
+  color: color-mix(in oklab, var(--text) 55%, transparent);
+  background: rgba(255,255,255,.65);
+  border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  box-shadow:0 6px 18px rgba(15,35,80,.08);
+  backdrop-filter: blur(6px);
+  opacity:.28;
+  --r:20px; --dur:28s;
+  animation: chip-drift var(--dur) linear infinite;
+}
+@keyframes chip-drift{
+  from{ transform: translate(-50%,-50%) rotate(0deg)   translateX(var(--r)) rotate(0deg) }
+  to  { transform: translate(-50%,-50%) rotate(360deg) translateX(var(--r)) rotate(-360deg) }
+}
+body.dark .chip{
+  background: rgba(17,26,44,.55);
+  color: color-mix(in oklab, #ffffff 85%, transparent);
+  opacity:.40; border-color: rgba(255,255,255,.08);
+}
+@media (prefers-reduced-motion: reduce){ .chip{ animation:none } }
+
+/* Tilt hook (keep text crisp) */
+.hero-card-tilt{
+  transition: transform .18s ease-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
 
 /* ========================================================================== */
 /* 5) SKILLS                                                                  */
@@ -194,9 +268,7 @@ body.dark .hero-bg{ opacity:.35; }
 /* 6) PROJECTS / GENERIC CARDS                                                */
 /* ========================================================================== */
 .card-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap:18px;
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:18px;
 }
 .card{
   background:var(--surface);
@@ -205,14 +277,7 @@ body.dark .hero-bg{ opacity:.35; }
   box-shadow:var(--shadow);
   overflow:hidden;
 }
-.thumb{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:contain;
-  display:block;
-  background:none;
-  padding:12px;
-}
+.thumb{ width:100%; aspect-ratio:16/9; object-fit:contain; display:block; background:none; padding:12px }
 .card-body{ padding:16px }
 .card h3{ margin:0 0 6px }
 .card p{ color:var(--muted); margin:0 0 12px }
@@ -221,53 +286,35 @@ body.dark .hero-bg{ opacity:.35; }
 /* Gradient header khusus Nextcloud card */
 .thumb-center{
   display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(
-    135deg,
+  background:linear-gradient(135deg,
     color-mix(in oklab, var(--primary) 30%, #cfe1ff),
-    color-mix(in oklab, var(--accent) 35%, #e6f3ff)
-  );
+    color-mix(in oklab, var(--accent) 35%, #e6f3ff));
 }
-.thumb-logo{
-  width: clamp(180px, 42%, 360px);
-  height: auto;
-  object-fit: contain;
-  display: block;
-  opacity: .95;
-}
-@media (max-width:700px){
-  .thumb-logo{ width: clamp(140px, 55%, 280px) }
-}
+.thumb-logo{ width:clamp(180px, 42%, 360px); height:auto; object-fit:contain; display:block; opacity:.95 }
+@media (max-width:700px){ .thumb-logo{ width:clamp(140px, 55%, 280px) } }
 
 /* Perbesar header image untuk TemankuWebApp */
 .thumb--big{ padding:0 }
 @media (max-width:700px){ .thumb--big{ padding:4px } }
-
-/* Cadangan jika lupa .thumb--big */
 .thumb[src$="financeapp.svg"]{ padding:0 }
 
 /* ========================================================================== */
 /* 6.1) SOCIALS (Contact chips)                                               */
 /* ========================================================================== */
-.socials{
-  display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;
-}
+.socials{ display:flex; gap:12px; flex-wrap:wrap; margin-top:8px }
 .social{
   display:inline-flex; align-items:center; gap:8px;
   padding:10px 12px; border-radius:12px; background:var(--surface);
   border:1px solid color-mix(in oklab,var(--text) 12%,transparent);
-  text-decoration:none; font-weight:600; box-shadow:var(--shadow);
+  font-weight:600; box-shadow:var(--shadow);
 }
 .social:hover{ color:var(--primary); transform:translateY(-1px); box-shadow:var(--shadow) }
 .social img{ width:20px; height:20px; object-fit:contain }
 
-/* Dark-mode fix for black icons (GitHub/Gmail) */
+/* Dark-mode fix for black icons */
 body.dark img.skill-icon[src*="github"],
-body.dark .social img[src*="github"]{ filter: invert(1) brightness(1.2) }
-
-/* === Dark-mode fix for black skill icons (Linux & Nextcloud) ============= */
-body.dark img.skill-icon[src*="linux"]{
-  filter: invert(1) brightness(1.2);
-}
+body.dark .social img[src*="github"],
+body.dark img.skill-icon[src*="linux"],
 body.dark img.skill-icon[src*="nextcloud"]{
   filter: invert(1) brightness(1.2);
 }
@@ -368,49 +415,46 @@ body.dark img.skill-icon[src*="nextcloud"]{
 /* ========================================================================== */
 /* 10) BACKGROUNDS: GRADIENT + FLOW + PARTICLES                               */
 /* ========================================================================== */
-/* --- Gradient Fluid ------------------------------------------------------- */
 :root{
-  --grad-1: 14 165 233;   /* rgb of #0ea5e9 */
-  --grad-2: 37 99 235;    /* rgb of #2563eb */
-  --grad-3: 34 211 238;   /* rgb of #22d3ee */
-  --grad-alpha: 0.28;     /* 0.20–0.45 */
+  --grad-1: 14 165 233;   /* #0ea5e9 */
+  --grad-2: 37 99 235;    /* #2563eb */
+  --grad-3: 34 211 238;   /* #22d3ee */
+  --grad-alpha: 0.28;
   --grad-dark-boost: rgba(0, 0, 0, 0.18);
 }
 
-/* Layer gradient halus (paling bawah) */
+/* Gradient layer (bottom) */
 .bg-gradient{
-  position: fixed; inset: 0; z-index: -3; pointer-events: none;
-  overflow: hidden; clip-path: inset(0); contain: paint;
-  will-change: transform, background-position;
+  position:fixed; inset:0; z-index:-3; pointer-events:none;
+  overflow:hidden; clip-path:inset(0); contain:paint;
+  will-change:transform, background-position;
   background:
     radial-gradient(42% 62% at 18% 18%, rgba(var(--grad-1) / var(--grad-alpha)) 0%, transparent 60%),
     radial-gradient(36% 56% at 82% 12%, rgba(var(--grad-2) / var(--grad-alpha)) 0%, transparent 60%),
     radial-gradient(52% 72% at 62% 82%, rgba(var(--grad-3) / var(--grad-alpha)) 0%, transparent 65%),
     linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.40));
-  filter: blur(30px) saturate(90%) brightness(1.03);
-  opacity: 0.75;
+  filter:blur(30px) saturate(90%) brightness(1.03);
+  opacity:.75;
   -webkit-mask-image: radial-gradient(120% 120% at 50% 40%, #000 65%, transparent 100%);
           mask-image: radial-gradient(120% 120% at 50% 40%, #000 65%, transparent 100%);
-  transform: translateZ(0);
-  animation: bg-drift 80s ease-in-out infinite alternate;
+  transform:translateZ(0);
+  animation:bg-drift 80s ease-in-out infinite alternate;
 }
 
-/* Dark overlay: kontras lebih baik */
 body.dark .bg-gradient{
   background:
     radial-gradient(42% 62% at 18% 18%, rgba(var(--grad-1) / calc(var(--grad-alpha) * 0.8)) 0%, transparent 60%),
     radial-gradient(36% 56% at 82% 12%, rgba(var(--grad-2) / calc(var(--grad-alpha) * 0.8)) 0%, transparent 60%),
     radial-gradient(52% 72% at 62% 82%, rgba(var(--grad-3) / calc(var(--grad-alpha) * 0.8)) 0%, transparent 65%),
     linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
-  filter: blur(28px) saturate(100%) brightness(0.92);
-  opacity: 0.85;
+  filter:blur(28px) saturate(100%) brightness(0.92);
+  opacity:.85;
 }
 
-/* Mobile: paksa radial jadi circle agar tidak oval */
-@media (max-width: 767px){
+@media (max-width:767px){
   .bg-gradient{
-    filter: blur(28px) saturate(88%) brightness(1.02);
-    opacity: 0.7; animation-duration: 110s;
+    filter:blur(28px) saturate(88%) brightness(1.02);
+    opacity:.7; animation-duration:110s;
     background:
       radial-gradient(circle 36% at 20% 16%, rgba(var(--grad-1) / var(--grad-alpha)) 0%, transparent 60%),
       radial-gradient(circle 30% at 82% 12%, rgba(var(--grad-2) / var(--grad-alpha)) 0%, transparent 62%),
@@ -420,36 +464,23 @@ body.dark .bg-gradient{
             mask-image: radial-gradient(circle 120% at 50% 42%, #000 72%, transparent 100%);
   }
 }
-
-/* Drift anim */
 @keyframes bg-drift{
-  0%   { background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%; transform: scale(1) }
-  50%  { background-position: 10% 5%, 95% 10%, 55% 95%, 0% 0%; transform: scale(1.02) }
-  100% { background-position: 15% 10%, 90% 15%, 60% 90%, 0% 0%; transform: scale(1.04) }
+  0%{   background-position:0% 0%, 100% 0%, 50% 100%, 0% 0%; transform:scale(1) }
+  50%{  background-position:10% 5%, 95% 10%, 55% 95%, 0% 0%; transform:scale(1.02) }
+  100%{ background-position:15% 10%, 90% 15%, 60% 90%, 0% 0%; transform:scale(1.04) }
 }
 
-/* Flow layer (tengah) */
-.bg-flow{
-  position: fixed; inset: 0; z-index: -2;
-  pointer-events: none; opacity: 0.38; clip-path: inset(0);
-}
-@media (max-width:767px){ .bg-flow{ opacity: 0.30 } }
-body.dark .bg-flow{ opacity: 0.26 }
+/* Flow & particles */
+.bg-flow{ position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.38; clip-path:inset(0) }
+@media (max-width:767px){ .bg-flow{ opacity:.30 } }
+body.dark .bg-flow{ opacity:.26 }
 
-/* Particles layer (teratas dari background) */
-.bg-particles{
-  position: fixed; inset: 0; z-index: -1;
-  pointer-events: none; opacity: 0.55; clip-path: inset(0);
-}
-@media (max-width:767px){ .bg-particles{ opacity: 0.45 } }
-body.dark .bg-particles{ opacity: 0.38 }
+.bg-particles{ position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.55; clip-path:inset(0) }
+@media (max-width:767px){ .bg-particles{ opacity:.45 } }
+body.dark .bg-particles{ opacity:.38 }
 
 /* ========================================================================== */
-/* 11) A NOTE: duplicate groups merged – no value changes.                    */
-/* ========================================================================== */
-
-/* ========================================================================== */
-/* 12) GLASSMORPHISM CARD (dark overrides use body.dark)                      */
+/* 12) GLASSMORPHISM CARD                                                     */
 /* ========================================================================== */
 :root{
   --glass-bg: rgba(255, 255, 255, 0.55);
