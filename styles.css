@@ -562,5 +562,5 @@ body.dark .glass-card span{ color:rgba(255,255,255,0.86) }
   .sig-underline .ul-base{ stroke:#000 !important; opacity:.95; }
 
   /* kalau dark mode aktif, tetap hitam */
-  body.dark .sig-underline .ul-base{ stroke:#000 !important; }
+  body.dark .sig-underline .ul-base{ stroke:#cfe1ff !important; }
 }
