@@ -14,6 +14,7 @@
   --transition:.28s cubic-bezier(.2,.8,.2,1);
   --header-h:64px;
   --header-h-mobile:56px;
+  --portrait-ring: #3c6ab86b;
 }
 
 /* Dark theme tokens */
@@ -21,6 +22,7 @@ body.dark{
   --bg:#0b1220; --surface:#111a2c; --text:#e6edf7; --muted:#95a4c2;
   --primary:#A5C1E6; --accent:#70B0C7; --accent-2:#2b3b63;
   --shadow:0 16px 44px rgba(0,0,0,.45);
+  --portrait-ring: #a7c4ff77;
 }
 
 /* ========================================================================== */
@@ -564,3 +566,56 @@ body.dark .glass-card span{ color:rgba(255,255,255,0.86) }
   /* kalau dark mode aktif, tetap hitam */
   body.dark .sig-underline .ul-base{ stroke:#cfe1ff !important; }
 }
+
+/* ===== About layout ===== */
+.about-grid{
+  display:grid;
+  grid-template-columns: 1fr 240px;
+  grid-template-areas:
+    "title  title"      /* judul span 2 kolom */
+    "copy   portrait";  /* teks kiri, foto kanan */
+  column-gap:20px;
+  row-gap:14px;
+  align-items:center;
+}
+
+/* Promote children of .about-copy to grid items */
+.about-copy{ display: contents; }
+
+/* Map elemen ke area grid */
+.about-copy > h2{ grid-area:title; margin:0; }
+.about-copy > .lead{ grid-area:copy; }
+
+.about-portrait{
+  grid-area:portrait;
+  margin:0;
+  justify-self:end;
+}
+
+/* Foto profil */
+.about-portrait img{
+  width: clamp(150px, 20vw, 220px);
+  max-width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:50%;
+  border:5px solid var(--portrait-ring);
+  box-shadow:0 12px 24px rgba(0,0,0,.12);
+}
+
+/* ===== Mobile: About → Foto → Paragraf ===== */
+@media (max-width:900px){
+  .about-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "title"
+      "portrait"
+      "copy";
+    row-gap:12px;
+  }
+  .about-portrait{ justify-self:center; }
+  .about-portrait img{ width:160px; }
+}
+
+
+
