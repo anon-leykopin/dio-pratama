@@ -552,3 +552,15 @@ body.dark .glass-card span{ color:rgba(255,255,255,0.86) }
   .btn{ transition:none !important; }
   .hero-card-tilt{ transition: none !important; transform: none !important; }
 }
+
+/* Mobile: underline jadi 1 warna hitam (tanpa runner biru) */
+@media (max-width: 767px){
+  /* sembunyikan garis runner (biru) */
+  .sig-underline .ul-runner{ display:none !important; }
+
+  /* paksa base line jadi hitam di semua tema */
+  .sig-underline .ul-base{ stroke:#000 !important; opacity:.95; }
+
+  /* kalau dark mode aktif, tetap hitam */
+  body.dark .sig-underline .ul-base{ stroke:#000 !important; }
+}
